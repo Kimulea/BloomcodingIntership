@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bloomcoding.Common.Dtos.Groups
 {
-    public class CreateGroupDto
+    public class GroupDto
     {
         public string Name { get; set; }
         public int Level { get; set; }

@@ -7,9 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bloomcoding.Bll
+namespace Bloomcoding.Bll.Profiles
 {
-    public class BllAssemblyMarker
+    class GroupProfile : Profile
     {
+        public GroupProfile()
+        {
+            CreateMap<Group, GroupListDto>();
+            CreateMap<Group, GroupDto>();
+        }
     }
 }

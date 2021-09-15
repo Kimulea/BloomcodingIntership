@@ -1,4 +1,5 @@
 ﻿using Bloomcoding.Common.Dtos.Groups;
+using Bloomcoding.Common.Models.PagedRequest;
 using Bloomcoding.Domain;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,14 @@ namespace Bloomcoding.Bll.Intefaces
 {
     public interface IGroupService
     {
-        Task<IEnumerable<GroupListDto>> GetAllGroups();
+        Task<PagedResult<GroupListDto>> GetPagedGroups(PagedRequest pagedRequest);
+
+        Task<GroupDto> GetGroup(int id);
+
+        Task<GroupDto> CreateGroup(GroupDto newGroupDto);
+
+        Task UpdateGroup(int id, GroupDto groupDto);
+
+        Task DeleteGroup(int id);
     }
 }
