@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
+using System.Net;
+using Bloomcoding.Bll.Exceptions;
 
 namespace Bloomcoding.Bll.Services
 {
@@ -32,11 +35,17 @@ namespace Bloomcoding.Bll.Services
         public async Task<GroupDto> GetGroup(int id)
         {
             var group = await _repository.GetById<Group>(id);
+
+            if(group == null)
+            {
+                throw new EntryNotFoundException("Group not found");
+            }
+
             var groupDto = _mapper.Map<GroupDto>(group);
             return groupDto;
         }
 
-        public async Task<GroupDto> CreateGroup(GroupDto newGroupDto)
+        public async Task<GroupDto> CreateGroup(NewGroupDto newGroupDto)
         {
             var group = _mapper.Map<Group>(newGroupDto);
             _repository.Add(group);
@@ -50,6 +59,7 @@ namespace Bloomcoding.Bll.Services
         public async Task UpdateGroup(int id, GroupDto bookDto)
         {
             var group = await _repository.GetById<Group>(id);
+
             _mapper.Map(bookDto, group);    
             await _repository.SaveChangesAsync();
         }

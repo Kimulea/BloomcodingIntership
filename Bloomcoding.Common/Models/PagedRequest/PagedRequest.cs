@@ -10,7 +10,7 @@ namespace Bloomcoding.Common.Models.PagedRequest
     {
         public PagedRequest()
         {
-            RequestFilters = new RequestFilters();
+            /*RequestFilters = new RequestFilters();*/
         }
 
         public int PageIndex { get; set; }
@@ -21,6 +21,6 @@ namespace Bloomcoding.Common.Models.PagedRequest
 
         public string SortDirection { get; set; }
 
-        public RequestFilters RequestFilters { get; set; }
+        /*public RequestFilters RequestFilters { get; set; }*/
     }
 }

@@ -16,7 +16,7 @@ namespace Bloomcoding.Dal.Extensions
             where TEntity : BaseEntity
             where TDto : class
         {
-            query = query.ApplyFilters(pagedRequest);
+            //query = query.ApplyFilters(pagedRequest);
 
             var total = await query.CountAsync();
 
@@ -52,7 +52,7 @@ namespace Bloomcoding.Dal.Extensions
             return query;
         }
 
-        private static IQueryable<T> ApplyFilters<T>(this IQueryable<T> query, PagedRequest pagedRequest)
+        /*private static IQueryable<T> ApplyFilters<T>(this IQueryable<T> query, PagedRequest pagedRequest)
         {
             var predicate = new StringBuilder();
             var requestFilters = pagedRequest.RequestFilters;
@@ -73,6 +73,6 @@ namespace Bloomcoding.Dal.Extensions
             }
 
             return query;
-        }
+        }*/
     }
 }

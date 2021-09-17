@@ -39,6 +39,11 @@ namespace Bloomcoding.Dal.Repositories
             return await query.FirstOrDefaultAsync(entity => entity.Id == id);
         }
 
+        public async Task<TEntity> FirstOrDefault<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : BaseEntity
+        {
+            return await _bloomcodingDbContext.Set<TEntity>().FirstOrDefaultAsync(predicate);
+        }
+
         public async Task SaveChangesAsync()
         {
             await _bloomcodingDbContext.SaveChangesAsync();

@@ -15,7 +15,7 @@ namespace Bloomcoding.Bll.Intefaces
 
         Task<GroupDto> GetGroup(int id);
 
-        Task<GroupDto> CreateGroup(GroupDto newGroupDto);
+        Task<GroupDto> CreateGroup(NewGroupDto newGroupDto);
 
         Task UpdateGroup(int id, GroupDto groupDto);
 

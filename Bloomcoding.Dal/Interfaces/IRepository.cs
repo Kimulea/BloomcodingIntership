@@ -15,6 +15,7 @@ namespace Bloomcoding.Dal.Interfaces
 
         Task<TEntity> GetByIdWithInclude<TEntity>(int id, params Expression<Func<TEntity, object>>[] includeProperties) where TEntity : BaseEntity;
 
+        Task<TEntity> FirstOrDefault<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : BaseEntity;
         Task<List<TEntity>> GetAll<TEntity>() where TEntity : BaseEntity;
 
         Task SaveChangesAsync();

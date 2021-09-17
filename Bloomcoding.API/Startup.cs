@@ -20,6 +20,7 @@ using Bloomcoding.Dal.Repositories;
 using Bloomcoding.Bll.Intefaces;
 using Bloomcoding.Bll.Services;
 using Bloomcoding.Bll;
+using Bloomcoding.API.Infrastructure.Middlewares;
 
 namespace Bloomcoding.API
 {
@@ -96,6 +97,10 @@ namespace Bloomcoding.API
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bloomcoding.API v1"));
+            }
+            else
+            {
+                app.UseMiddleware<ErrorHandlingMiddleware>();
             }
 
             app.UseHttpsRedirection();

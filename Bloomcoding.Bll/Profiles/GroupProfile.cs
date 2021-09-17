@@ -15,6 +15,7 @@ namespace Bloomcoding.Bll.Profiles
         {
             CreateMap<Group, GroupListDto>();
             CreateMap<Group, GroupDto>();
+            CreateMap<NewGroupDto, Group>();
         }
     }
 }

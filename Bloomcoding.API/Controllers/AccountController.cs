@@ -76,22 +76,15 @@ namespace Bloomcoding.API.Controllers
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
             var userExists = await _userManager.FindByNameAsync(userForRegisterDto.Username);
-            
+
             if (userExists != null)
-                return Ok("User already exists");
+                return BadRequest("User already exists");
 
             User user = new User()
             {
                 Email = userForRegisterDto.Email,
                 UserName = userForRegisterDto.Username
             };
-
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
-                await _roleManager.CreateAsync(new Role() { Name = UserRoles.Admin });
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Student))
-                await _roleManager.CreateAsync(new Role() { Name = UserRoles.Student });
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Teacher))
-                await _roleManager.CreateAsync(new Role() { Name = UserRoles.Teacher });
 
             var result = await _userManager.CreateAsync(user, userForRegisterDto.Password);
 

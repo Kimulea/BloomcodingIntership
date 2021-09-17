@@ -1,4 +1,5 @@
-﻿using Bloomcoding.Bll.Intefaces;
+﻿using Bloomcoding.Bll.Exceptions;
+using Bloomcoding.Bll.Intefaces;
 using Bloomcoding.Common.Dtos.Groups;
 using Bloomcoding.Common.Models.PagedRequest;
 using Bloomcoding.Dal.Constants;
@@ -30,6 +31,7 @@ namespace Bloomcoding.API.Controllers
             return publishers;
         }*/
 
+        //[Authorize(Roles = "Admin")]
         [AllowAnonymous]
         [HttpPost("paginated-search")]
         public async Task<PagedResult<GroupListDto>> GetPagedGroups([FromBody] PagedRequest pagedRequest)
@@ -40,6 +42,7 @@ namespace Bloomcoding.API.Controllers
 
         [AllowAnonymous]
         [HttpGet("{id}")]
+        [ApiExceptionFilter]
         public async Task<GroupDto> GetGroup(int id)
         {
             var groupDto = await _groupService.GetGroup(id);
@@ -48,7 +51,7 @@ namespace Bloomcoding.API.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> CreateGroup(GroupDto newGroupDto)
+        public async Task<IActionResult> CreateGroup(NewGroupDto newGroupDto)
         {
             if (!ModelState.IsValid)
             {
@@ -61,7 +64,7 @@ namespace Bloomcoding.API.Controllers
 
         [AllowAnonymous]
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBook(int id, GroupDto groupDto)
+        public async Task<IActionResult> UpdateGroup(int id, GroupDto groupDto)
         {
             if (!ModelState.IsValid)
             {
